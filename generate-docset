@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# Install pre-requisites
+git clone git@github.com:alg/typedoc-dash-theme.git
+git clone git@github.com:NativeScript/NativeScript.git NativeScript
+cd NativeScript
+npm i sqlite3 --only=dev
+
+# Remove previous docset
+rm -rf ../nativescript.docset
+
+# Generate docset
+TYPEDOC_DASH_ICONS_PATH=../icons grunt typedoc \
+  --theme ../typedoc-dash-theme/bin \
+  --out ../nativescript.docset
+
